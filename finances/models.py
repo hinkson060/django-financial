@@ -1,4 +1,7 @@
+import datetime
+
 from django.db import models
+from django.utils import timezone
 
 class Customer( models.Model ):
     first_name = models.CharField( max_length = 50 )
@@ -11,19 +14,28 @@ class Customer( models.Model ):
     email = models.CharField( max_length = 254 )
     phone = models.CharField( max_length = 10 )
     
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+    
 
 class Stock( models.Model ):
-    stock_owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
-    stock_symbol = models.CharField( max_length = 5 )
-    stock_name = models.CharField( max_length = 50 )
-    stock_purchase_price = models.DecimalField( max_digits = 6, decimal_places = 2 )
-    stock_purchase_date = models.DateField()
-    stock_quantity_owned = models.IntegerField()
-    
-class Crypto( models.Model ):
-    crypto_owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
-    crypto_symbol = models.CharField( max_length = 5 )
-    crypto_name = models.CharField( max_length = 50 )
+    owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
+    symbol = models.CharField( max_length = 5 )
+    name = models.CharField( max_length = 50 )
     purchase_price = models.DecimalField( max_digits = 6, decimal_places = 2 )
     purchase_date = models.DateField()
     quantity_owned = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
+    
+class Crypto( models.Model ):
+    owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
+    symbol = models.CharField( max_length = 5 )
+    name = models.CharField( max_length = 50 )
+    purchase_price = models.DecimalField( max_digits = 6, decimal_places = 2 )
+    purchase_date = models.DateField()
+    quantity_owned = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
