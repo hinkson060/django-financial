@@ -1,0 +1,9 @@
+{% if customers %}
+    <ul>
+    {% for customer in customers %}
+        <li><a href="{% url 'customer_detail' customer.id %}">{{ customer }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No customers are available.</p>
+{% endif %}

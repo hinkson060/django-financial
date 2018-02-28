@@ -1,0 +1,32 @@
+<h1>{{ customer }}</h1>
+<ul>
+    <li>{{ customer.address_line_1 }}</li>
+    <li>{{ customer.address_line_2 }}</li>
+    <li>{{ customer.city}}</li>
+    <li>{{ customer.state }}</li>
+    <li>{{ customer.zipcode }}</li>
+    <li>{{ customer.email }}</li>
+    <li>{{ customer.phone }}</li>
+</ul>
+
+<h2>Stocks:</h2>
+{% if customer.stock_set.all %}
+<ul>
+    {% for stock in customer.stock_set.all %}
+        <li><a href="{% url 'stock_detail' stock.id %}">{{ stock.symbol }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No stocks are currently owned by this customer.</p>
+{% endif %}
+
+<h2>Cryptocurrencies:</h2>
+{% if customer.crypto_set.all %}
+    <ul>
+        {% for crypto in customer.crypto_set.all %}
+            <li><a href="{% url 'crypto_detail' crypto.id %}">{{ crypto.symbol }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No cryptocurrencies are currently owned by this customer.</p>
+{% endif %}
