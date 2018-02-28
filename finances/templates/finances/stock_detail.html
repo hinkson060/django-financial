@@ -1,7 +1,21 @@
-<h1>{{ stock }} ({{ stock.symbol }})</h1>
-<ul>
-    <li>{{ stock.owner }}</li>
-    <li>{{ stock.purchase_price}}</li>
-    <li>{{ stock.purchase_date }}</li>
-    <li>{{ stock.quantity_owned }}</li>
-</ul>
+{% extends 'finances/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <ul class="collection with-header z-depth-1">
+            <li class="collection-header red darken-3 white-text"><h5><b>{{ stock }} ({{ stock.symbol }})</b></h5></li>
+            <li class="collection-item grey lighten-4"><div>Owner:<div class="secondary-content">{{ stock.owner }}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Purchase Price:<div class="secondary-content">${{ stock.purchase_price}}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Purchase Date:<div class="secondary-content">{{ stock.purchase_date }}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Quantity Owned:<div class="secondary-content">{{ stock.quantity_owned }}</div></div></li>
+        </ul>
+    </div>
+    <div class="col s12">
+        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Customer</a>
+        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">edit</i>Edit Stock</a>
+    </div>
+    
+</div>
+
+{% endblock %}

@@ -1,32 +1,77 @@
-<h1>{{ customer }}</h1>
-<ul>
-    <li>{{ customer.address_line_1 }}</li>
-    <li>{{ customer.address_line_2 }}</li>
-    <li>{{ customer.city}}</li>
-    <li>{{ customer.state }}</li>
-    <li>{{ customer.zipcode }}</li>
-    <li>{{ customer.email }}</li>
-    <li>{{ customer.phone }}</li>
-</ul>
+{% extends 'finances/base.html' %}
 
-<h2>Stocks:</h2>
-{% if customer.stock_set.all %}
-<ul>
-    {% for stock in customer.stock_set.all %}
-        <li><a href="{% url 'stock_detail' stock.id %}">{{ stock.symbol }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-    <p>No stocks are currently owned by this customer.</p>
-{% endif %}
+{% block content %}
 
-<h2>Cryptocurrencies:</h2>
-{% if customer.crypto_set.all %}
-    <ul>
-        {% for crypto in customer.crypto_set.all %}
-            <li><a href="{% url 'crypto_detail' crypto.id %}">{{ crypto.symbol }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No cryptocurrencies are currently owned by this customer.</p>
-{% endif %}
+<div class="row">
+    <div class="col s12">
+        <h3><b>{{ customer }}'s Assets</b></h3>
+        <div class="card grey lighten-3 z-depth-3">
+            <div class = "card-content">
+                <span class = "card-title red-text text-darken-3"><h4><b>Stocks</b></h4></span>
+        
+                {% if customer.stock_set.all %}
+                
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th># of Shares</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stock in customer.stock_set.all %}
+                                <tr>
+                                    <td><a href="{% url 'stock_detail' stock.id %}"><i>{{ stock }}</i> (<b>{{ stock.symbol }}</b>)</a></td>
+                                    <td>{{ stock.quantity_owned }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                {% else %}
+                    <p>No stocks are currently owned by this customer.</p>
+                {% endif %}
+                    
+                </br><div class = "card-action">
+                    <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">insert_chart</i>Add Stock</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card grey lighten-3 z-depth-3">
+            <div class = "card-content">
+                <span class = "card-title red-text text-darken-3"><h4><b>Cryptocurrencies</b></h4></span>
+        
+                    {% if customer.crypto_set.all %}
+                        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cryptocurrency</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crypto in customer.crypto_set.all %}
+                                <tr>
+                                    <td><a href="{% url 'crypto_detail' crypto.id %}">{{ crypto }} ({{ crypto.symbol }})</a></td>
+                                    <td>{{ crypto.quantity_owned }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                        
+                {% else %}
+                    <p>No cryptocurrencies are currently owned by this customer.</p>
+                {% endif %}
+                    
+                </br><div class = "card-action">
+                    <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">attach_money</i>Add Cryptocurrency</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div> 
+
+{% endblock %}

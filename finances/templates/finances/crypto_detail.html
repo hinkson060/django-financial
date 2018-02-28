@@ -1,7 +1,19 @@
-<h1>{{ crypto }} ({{ crypto.symbol }})</h1>
-<ul>
-    <li>{{ crypto.owner }}</li>
-    <li>{{ crypto.purchase_price}}</li>
-    <li>{{ crypto.purchase_date }}</li>
-    <li>{{ crypto.quantity_owned }}</li>
-</ul>
+{% extends 'finances/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <ul class="collection with-header z-depth-1">
+            <li class="collection-header red darken-3 white-text"><div><h5><b>{{ crypto }} ({{ crypto.symbol }})</b></h5></li>
+            <li class="collection-item grey lighten-4"><div>Owner:<div class="secondary-content">{{ crypto.owner }}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Purchase Price:<div class="secondary-content">${{ crypto.purchase_price}}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Purchase Date:<div class="secondary-content">{{ crypto.purchase_date }}</div></div></li>
+            <li class="collection-item grey lighten-4"><div>Quantity Owned:<div class="secondary-content">{{ crypto.quantity_owned }}</div></div></li>
+        </ul>
+    </div>
+    <div class="col s12">
+        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Customer</a>
+        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">edit</i>Edit Currency</a>
+    </div>
+
+{% endblock %}

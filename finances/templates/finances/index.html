@@ -1,9 +1,25 @@
-{% if customers %}
-    <ul>
-    {% for customer in customers %}
-        <li><a href="{% url 'customer_detail' customer.id %}">{{ customer }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No customers are available.</p>
-{% endif %}
+{% extends 'finances/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        {% if customers %}
+            <ul class="collection with-header z-depth-1">
+                <li class="collection-header red darken-3 white-text"><h5><b>Customers</b></h5></li>
+                {% for customer in customers %}
+                    <li class="collection-item grey lighten-4"><div><a href="{% url 'customer_detail' customer.id %}">{{ customer }}</a>
+                    <a href="#!" class="secondary-content tooltipped" data-position="right"
+                    data-delay="50" data-tooltip="Edit customer info"><i class="material-icons red-text text-darken-3">edit</i></a></div></li>
+                {% endfor %}
+            </ul>
+            
+        {% else %}
+            <p>No customers are available.</p>
+        {% endif %}
+    </div>
+    <div class="col s12">
+        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">account_circle</i>Add Customer</a>
+    </div>
+    
+</div>
+{% endblock %}
