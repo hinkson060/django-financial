@@ -7,7 +7,7 @@ class Customer( models.Model ):
     first_name = models.CharField( max_length = 50 )
     last_name = models.CharField( max_length = 50 )
     address_line_1 = models.CharField( max_length = 50 )
-    address_line_2 = models.CharField( max_length = 50 )
+    address_line_2 = models.CharField( max_length = 50, null=True, blank=True )
     city = models.CharField( max_length = 50 )
     state = models.CharField( max_length = 2 )
     zipcode = models.CharField( max_length = 6 )
@@ -16,6 +16,14 @@ class Customer( models.Model ):
     
     def __str__(self):
         return self.first_name + " " + self.last_name
+    
+    def full_address(self):
+        if( self.address_line_2 == "" or self.address_line_2 == None ):
+            return self.address_line_1 + ", " + \
+            self.city + ", " + self.state + " - " + self.zipcode
+        else:
+            return self.address_line_1 + " " + self.address_line_2 + ", " + \
+            self.city + ", " + self.state + " - " + self.zipcode
     
 
 class Stock( models.Model ):

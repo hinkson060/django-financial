@@ -4,8 +4,23 @@
 
 <div class="row">
     <div class="col s12">
-        <h3><b>{{ customer }}'s Assets</b></h3>
-        <div class="card grey lighten-3 z-depth-3">
+        <h3><b>{{ customer }}</b></h3>
+        <div class="col s12">
+            <ul class="collection z-depth-1">
+                <li class="collection-item grey lighten-4"><div>Address:<div class="secondary-content">{{ customer.full_address }}</div></div></li>
+                <li class="collection-item grey lighten-4"><div>E-mail address:<div class="secondary-content">{{ customer.email }}</div></div></li>
+                <li class="collection-item grey lighten-4"><div>Phone number:<div class="secondary-content">{{ customer.phone }}</div></div></li>
+            </ul>
+            <a href="{% url 'index' %}"
+            class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Customer List</a>
+        </div>
+    </div>
+    <div class="col s12">
+        
+        
+        
+        <h3><b>Assets Owned</b></h3>
+        <div class="card grey lighten-4 z-depth-3">
             <div class = "card-content">
                 <span class = "card-title red-text text-darken-3"><h4><b>Stocks</b></h4></span>
         
@@ -33,12 +48,13 @@
                 {% endif %}
                     
                 </br><div class = "card-action">
-                    <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">insert_chart</i>Add Stock</a>
+                    <a href="{% url 'stock_create' customer.id %}"
+                    class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">insert_chart</i>Add Stock</a>
                 </div>
             </div>
         </div>
         
-        <div class="card grey lighten-3 z-depth-3">
+        <div class="card grey lighten-4 z-depth-3">
             <div class = "card-content">
                 <span class = "card-title red-text text-darken-3"><h4><b>Cryptocurrencies</b></h4></span>
         
@@ -54,7 +70,7 @@
                         <tbody>
                             {% for crypto in customer.crypto_set.all %}
                                 <tr>
-                                    <td><a href="{% url 'crypto_detail' crypto.id %}">{{ crypto }} ({{ crypto.symbol }})</a></td>
+                                    <td><a href="{% url 'crypto_detail' crypto.id %}"><i>{{ crypto }}</i> (<b>{{ crypto.symbol }}</b>)</a></td>
                                     <td>{{ crypto.quantity_owned }}</td>
                                 </tr>
                             {% endfor %}
@@ -66,7 +82,8 @@
                 {% endif %}
                     
                 </br><div class = "card-action">
-                    <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">attach_money</i>Add Cryptocurrency</a>
+                    <a href="{% url 'crypto_create' customer.id %}"
+                    class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">attach_money</i>Add Cryptocurrency</a>
                 </div>
             </div>
         </div>

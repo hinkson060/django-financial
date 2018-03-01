@@ -1,0 +1,57 @@
+{% extends 'finances/base.html' %}
+
+{% block content %}
+<br>
+    <div class="row">
+        <div class="col s12">
+            <h4><b>New customer</b></h4>
+        </div>
+    
+    
+    <form method="POST" class="customer-form">{% csrf_token %}
+        
+		<div class="input-field col s6">
+			<label for="id_first_name">First name</label>
+			<input name="first_name" type="text" data-length="50" maxlength="50" required id="id_first_name">
+		</div>
+	    <div class="input-field col s6">
+			<label for="id_last_name">Last name</label>
+			<input name="last_name" type="text" data-length="50" maxlength="50" required id="id_last_name">
+		</div>
+		<div class="input-field col s6">
+			<label for="id_address_line_1">Address line 1</label>
+			<input name="address_line_1" type="text" data-length="50" maxlength="50" required id="id_address_line_1">
+		</div>
+		<div class="input-field col s6">
+			<label for="id_address_line_2">Address line 2</label>
+			<input name="address_line_2" type="text" data-length="50" maxlength="50">
+		</div>
+		<div class="input-field col s6">
+			<label for="id_city">City</label>
+			<input name="city" type="text" data-length="50" maxlength="50" required id="id_city">
+		</div>
+		<div class="input-field col s3">
+			<label for="id_state">State</label>
+			<input name="state" type="text" data-length="2" maxlength="2" required id="id_state">
+		</div>
+		<div class="input-field col s3">
+			<label for="id_zipcode">Zipcode</label>
+			<input name="zipcode" type="text" data-length="6" maxlength="6" required id="id_zipcode">
+		</div>
+		<div class="input-field col s6">
+			<label for="id_email">E-mail address</label>
+			<input name="email" type="text" data-length="254" maxlength="254" required id="id_email">
+		</div>
+		<div class="input-field col s6">
+			<label for="id_phone">Phone number</label>
+			<input name="phone" type="text" data-length="10" maxlength="10" required id="id_phone">
+		</div>
+        
+        <div class="input-field col s12">
+        	<a href="{% url 'index' %}"
+            class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Customer List</a>
+        	<button type="submit" class="save waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">account_circle</i>Create</button>
+        </div>
+        </div>
+    </form>
+{% endblock %}

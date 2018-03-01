@@ -12,8 +12,10 @@
         </ul>
     </div>
     <div class="col s12">
-        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Customer</a>
-        <a class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">edit</i>Edit Stock</a>
+        <a href="{% url 'customer_detail' stock.owner.id %}"
+        class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to owner</a>
+        <a 
+        class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">edit</i>Edit Stock</a>
     </div>
     
 </div>
