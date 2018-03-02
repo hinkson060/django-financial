@@ -14,8 +14,25 @@
     <div class="col s12">
         <a href="{% url 'customer_detail' crypto.owner.id %}"
         class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons left">arrow_back</i>Return to Owner</a>
-        <a href="!#"
+        <a href="{% url 'crypto_edit' crypto.id %}"
         class="waves-effect waves-light brown lighten-1 btn"><i class="material-icons right">edit</i>Edit Currency</a>
+        <a href="#modal1"
+        class="waves-effect waves-light brown lighten-1 btn modal-trigger"><i class="material-icons right">delete</i>Delete</a>
     </div>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to delete this?</h4>
+      <p>This action is irreversible, and will result in permanent loss of data.</p>
+    </div>
+    <div class="modal-footer">
+      <form action="{% url 'crypto_detail' crypto.id %}" method="POST" >
+          {% csrf_token %}
+          <a href="#!" class="modal-action modal-close waves-effect waves-brown btn-flat">Cancel</a>
+          <button type="submit" class="save waves-effect waves-brown btn-flat">Delete</button>
+      </form>
+      
+    </div>
+  </div>
 
 {% endblock %}

@@ -30,7 +30,7 @@ class Stock( models.Model ):
     owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
     symbol = models.CharField( max_length = 5 )
     name = models.CharField( max_length = 50 )
-    purchase_price = models.DecimalField( max_digits = 6, decimal_places = 2 )
+    purchase_price = models.DecimalField( max_digits = 20, decimal_places = 2 )
     purchase_date = models.DateField()
     quantity_owned = models.IntegerField()
     
@@ -41,7 +41,7 @@ class Crypto( models.Model ):
     owner = models.ForeignKey( Customer, on_delete = models.CASCADE )
     symbol = models.CharField( max_length = 5 )
     name = models.CharField( max_length = 50 )
-    purchase_price = models.DecimalField( max_digits = 6, decimal_places = 2 )
+    purchase_price = models.DecimalField( max_digits = 20, decimal_places = 2 )
     purchase_date = models.DateField()
     quantity_owned = models.IntegerField()
     

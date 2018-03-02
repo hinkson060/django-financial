@@ -8,7 +8,8 @@
                 <li class="collection-header red darken-3 white-text"><h5><b>Customers</b></h5></li>
                 {% for customer in customers %}
                     <li class="collection-item grey lighten-4"><div><a href="{% url 'customer_detail' customer.id %}">{{ customer }}</a>
-                    <a href="#!" class="secondary-content tooltipped" data-position="right"
+                    <a href="{% url 'customer_edit' customer.id %}"
+                    class="secondary-content tooltipped" data-position="right"
                     data-delay="50" data-tooltip="Edit customer info"><i class="material-icons red-text text-darken-3">edit</i></a></div></li>
                 {% endfor %}
             </ul>
